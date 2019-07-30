@@ -1,0 +1,25 @@
+import pyglet
+
+def preload_image(image):
+    img = pyglet.image.load("resources/" + image)
+    return img
+
+class GameObjectClass:
+    def __init__(self, posx, posy, sprite=None):
+        self.posx = posx
+        self.posy = posy
+        self.velx = 0
+        self.vely = 0
+        if sprite is not None:
+            self.sprite = sprite
+            self.sprite.x = self.posx
+            self.sprite.y = self.posy
+
+    def draw(self):
+        self.sprite.draw()
+
+    def update(self, dt):
+        self.sprite.x += self.velx * dt
+        self.sprite.y += self.vely * dt
+        self.posx = self.sprite.x
+        self.posy = self.sprite.y
